@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Jquery feladatsor</title>
+    <style>
+        #elrejto {
+            width: 100px;
+            height: 100px;
+            border: 2px solid black;
+            border-radius: 10%;
+            background-color: blue;
+        }
+
+        #halmazAllapot {
+            display: block;
+            width:200px;
+            height: 200px;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>1. Feladat</h1>
+    <div id="elrejto"></div>
+    <button id="elrejtoGomb">Elrejtő gomb</button>
+    <h1>2. Feladat</h1>
+    <input type="text" id="szoveg"></input>
+    <p>A beírt karakterek száma: <span id="karakterSzam">0</span></p>
+    <h1>3. Feladat</h1>
+    <input type="text" id="hideShowText"></input>
+    <button id="hideShowButton">Elrejtő/Megjelenítő gomb</button>
+    <h1>4. Feladat</h1>
+    <input type="text" value="0" id="halmazAllapotSzam" min="-200" max="200"></input>
+    <div id="halmazAllapot"></div>
+    <script>
+        $(document).ready(function () {
+            //1. feladat
+            $("#elrejtoGomb").click(function () {
+                $("#elrejto").fadeOut("slow");
+            });
+
+            $("#elrejtoGomb").click(function () {
+                $("#elrejto").fadeIn("slow");
+            });
+            //2. feladat
+            $("#szoveg").on("keypress", function () {
+                var szam = $(this).val().length;
+                $("#karakterSzam").text(szam);
+            });
+            //3. feladat
+            $("#hideShowButton").click(function () {
+                var text = $("#hideShowText");
+                if (text.attr("type") == "text") {
+                    text.attr("type", "password");
+                } else {
+                    text.attr("type", "text");
+                }
+            })
+            //4. feladat
+            $("#halmazAllapotSzam").on("input", function () {
+                var halmazDiv = $("#halmazAllapot");
+                var halmazSzam = $(this).val();
+                if (halmazSzam < 0) {
+                    halmazDiv.css("backgroundImage", "url('ice.jpg')");
+                } else if (halmazSzam > 100) {
+                    halmazDiv.css("backgroundImage", "url('steam.jpg')");
+                } else {
+                    halmazDiv.css("backgroundImage", "url('water.jpg')");
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
